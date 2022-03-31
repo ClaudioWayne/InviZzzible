@@ -27,17 +27,17 @@ def escape_file_data(data):
 
 def read_data(fn):
     try:
-        return open(fn, 'rb').read()
+        return open(fn, 'r').read()
     except Exception as e:
-        print 'File Read Exception: %s' % e
+        print(f"File Read Exception: {e}")
         return
 
 
 def write_data(fn, data):
     try:
-        open(fn, 'wb').write(data)
+        open(fn, 'w').write(data)
     except Exception as e:
-        print 'File Write Exception: %s' % e
+        print(f'File Write Exception: {e}')
         return False
 
     return True
@@ -46,7 +46,7 @@ def write_data(fn, data):
 def get_file_data(conf, option):
     fn = conf.get(option, '')
     if not fn:
-        print 'Configuration parameter: `%s\' is absent' % option
+        print(f'Configuration parameter: {option} is absent')
         return False
 
     return read_data(fn)
@@ -74,15 +74,15 @@ def create_includes(conf):
 
 def read_conf(fn):
     try:
-        return load(open(fn, 'rb'))
+        return load(open(fn, 'r'))
     except Exception as e:
-        print 'Configuration Read Exception: %s' % e
+        print(f'Configuration Read Exception: %s') % e
         return
 
 
 def main():
     if len(argv) < 2:
-        print 'GenDefaultData usage: %s [config]' % argv[0]
+        print(f'GenDefaultData usage: {argv[0]} [config]')
         exit(1)
 
     conf = read_conf(argv[1])
